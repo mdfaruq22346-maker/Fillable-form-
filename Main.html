@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fillable Application Form</title>
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-color: #1f2937;
+      --border-color: #d1d5db;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .form-container {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .form-container h2 {
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+      color: #111827;
+    }
+
+    .form-container p {
+      margin-bottom: 24px;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .radio-option,
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--primary-hover);
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <p>Please fill out all required fields below.</p>
+
+    <form id="fillableForm" action="#" method="POST">
+      <!-- Full Name (Row) -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" required placeholder="Jane">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+        </div>
+      </div>
+
+      <!-- Contact Info (Row) -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="jane@example.com">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+        </div>
+      </div>
+
+      <!-- Date of Birth & Department -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob">
+        </div>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select id="department" name="department">
+            <option value="" disabled selected>Select an option</option>
+            <option value="engineering">Engineering</option>
+            <option value="design">Design</option>
+            <option value="marketing">Marketing</option>
+            <option value="support">Support</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Radio Buttons -->
+      <div class="form-group">
+        <label>Preferred Contact Method</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="contactMethod" value="email" checked> Email
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="contactMethod" value="phone"> Phone
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="contactMethod" value="sms"> SMS
+          </label>
+        </div>
+      </div>
+
+      <!-- File Upload -->
+      <div class="form-group">
+        <label for="attachment">Upload Resume / Document (PDF, DOCX)</label>
+        <input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx">
+      </div>
+
+      <!-- Textarea -->
+      <div class="form-group">
+        <label for="notes">Additional Comments</label>
+        <textarea id="notes" name="notes" rows="4" placeholder="Tell us anything else..."></textarea>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="form-group">
+        <label class="checkbox-option">
+          <input type="checkbox" id="terms" name="terms" required>
+          I agree to the terms and privacy policy *
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('fillableForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Form submitted successfully!');
+    });
+  </script>
+
+</body>
+</html>
